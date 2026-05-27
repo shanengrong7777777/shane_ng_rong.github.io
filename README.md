@@ -1,2 +1,2 @@
-# shanengrong7777777.github.io
+# shanengrong.github.io
 Investment Research Portfolio
