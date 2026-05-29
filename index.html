@@ -5,29 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shane Ng | Investment Research Portfolio</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --bg-deep: #020817;
-      --panel: rgba(8, 22, 45, 0.86);
       --panel-soft: rgba(12, 31, 62, 0.72);
       --line: rgba(148, 163, 184, 0.2);
       --border: rgba(96, 165, 250, 0.28);
       --text: #f8fafc;
       --muted: #cbd5e1;
-      --blue: #2563eb;
       --blue-dark: #1d4ed8;
       --blue-light: #60a5fa;
       --gold: #d6b35a;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -42,10 +34,7 @@
       background-size: 44px 44px, 44px 44px, auto, auto, auto;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       width: min(1180px, calc(100% - 48px));
@@ -86,7 +75,7 @@
       width: 74px;
       height: 4px;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--gold));
+      background: linear-gradient(90deg, var(--blue-dark), var(--blue-light), var(--gold));
       margin-bottom: 28px;
     }
 
@@ -115,11 +104,10 @@
       border-radius: 10px;
       font-size: 15px;
       font-weight: 650;
-      letter-spacing: -0.01em;
       color: #e5e7eb;
       border: 1px solid rgba(148, 163, 184, 0.34);
       background: rgba(15, 23, 42, 0.52);
-      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+      transition: 0.18s ease;
     }
 
     .btn.primary {
@@ -156,13 +144,9 @@
       box-shadow: 0 22px 68px rgba(0, 0, 0, 0.42);
     }
 
-    main {
-      padding: 42px 0 72px;
-    }
+    main { padding: 42px 0 72px; }
 
-    section {
-      margin-bottom: 58px;
-    }
+    section { margin-bottom: 58px; }
 
     .section-head {
       display: flex;
@@ -188,6 +172,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 22px;
+      align-items: stretch;
     }
 
     .grid-three {
@@ -207,16 +192,23 @@
 
     .project-card {
       display: grid;
-      grid-template-columns: 56px 1fr;
+      grid-template-columns: 56px minmax(0, 1fr);
       gap: 18px;
       padding: 24px;
+      height: 100%;
+      align-items: start;
+    }
+
+    .project-card > div:last-child,
+    .research-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .research-card {
       min-height: 410px;
       padding: 30px 24px 24px;
-      display: flex;
-      flex-direction: column;
       text-align: center;
       align-items: center;
     }
@@ -233,10 +225,15 @@
       display: grid;
       place-items: center;
       border-radius: 14px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(37,99,235,0.28));
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(96,165,250,0.25);
       overflow: hidden;
       color: #fff;
+    }
+
+    .logo-box.telegram-logo {
+      background: linear-gradient(135deg, #2aabee 0%, #229ed9 100%);
+      border: 0;
     }
 
     .project-logo svg,
@@ -256,7 +253,6 @@
       margin: 0 auto 16px;
       background: transparent;
       border: 0;
-      border-radius: 0;
       overflow: visible;
     }
 
@@ -286,11 +282,12 @@
       flex-direction: column;
       gap: 10px;
       margin: 18px 0;
+      width: 100%;
     }
 
+    .project-card .card-actions,
     .research-card .card-actions {
-      width: 100%;
-      margin-top: 18px;
+      margin-top: auto;
       margin-bottom: 18px;
     }
 
@@ -299,13 +296,14 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      min-height: 46px;
       padding: 12px 14px;
       border-radius: 10px;
       border: 1px solid rgba(96, 165, 250, 0.65);
       background: rgba(2, 8, 23, 0.38);
       color: #eff6ff;
       font-weight: 720;
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      transition: 0.18s ease;
     }
 
     .research-card .card-btn {
@@ -327,7 +325,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 9px;
-      margin-top: auto;
+      margin-top: 0;
     }
 
     .research-card .tags {
@@ -358,18 +356,14 @@
         gap: 34px;
       }
 
-      .photo-panel {
-        justify-content: flex-start;
-      }
+      .photo-panel { justify-content: flex-start; }
 
       .section-head {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .section-meta {
-        white-space: normal;
-      }
+      .section-meta { white-space: normal; }
 
       .grid-two,
       .grid-three {
@@ -378,29 +372,20 @@
     }
 
     @media (max-width: 560px) {
-      .page {
-        width: min(100% - 32px, 1180px);
-      }
+      .page { width: min(100% - 32px, 1180px); }
 
-      .hero {
-        padding-top: 42px;
-      }
+      .hero { padding-top: 42px; }
 
-      .hero-copy {
-        font-size: 17px;
-      }
+      .hero-copy { font-size: 17px; }
 
       .button-row,
-      .btn {
-        width: 100%;
-      }
+      .btn { width: 100%; }
 
-      .project-card {
-        grid-template-columns: 1fr;
-      }
+      .project-card { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
   <header class="hero page">
     <div>
@@ -408,15 +393,17 @@
       <h1>Shane Ng</h1>
       <div class="accent-line"></div>
       <p class="hero-copy">Double-degree PKU and NUS finance undergraduate focused on investment research, private banking, asset management, and systematic market strategies.</p>
+
       <div class="button-row">
-        <a class="btn primary" href="mailto:shane.ng@u.nus.edu" aria-label="Email Shane Ng">
+        <a class="btn primary" href="mailto:shane.ng@u.nus.edu">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4.5 6.75h15v10.5h-15z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="M5 7.25l7 5.55 7-5.55" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.5 6.75h15v10.5h-15z" stroke="currentColor" stroke-width="1.8" />
+            <path d="M5 7.25l7 5.55 7-5.55" stroke="currentColor" stroke-width="1.8" />
           </svg>
           <span>shane.ng@u.nus.edu</span>
         </a>
-        <a class="btn" href="https://www.linkedin.com/in/shane-ng" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+
+        <a class="btn" href="https://www.linkedin.com/in/shane-ng" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M5.34 4.65c0 1.03-.78 1.85-2.04 1.85h-.02c-1.2 0-1.98-.82-1.98-1.85 0-1.05.8-1.85 2.03-1.85 1.23 0 1.98.8 2.01 1.85zM1.54 8.02h3.56V20.5H1.54V8.02zM8.03 8.02h3.41v1.7h.05c.47-.9 1.64-1.96 3.38-1.96 3.62 0 4.29 2.38 4.29 5.47v7.27h-3.56v-6.44c0-1.54-.03-3.52-2.15-3.52-2.15 0-2.48 1.68-2.48 3.41v6.55H8.03V8.02z" />
           </svg>
@@ -446,13 +433,20 @@
               <path d="M17 7h2v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
+
           <div>
             <h3>Systematic Quantitative Investment Project</h3>
             <p>Designed a regime-based quantitative equity model using relative strength ranking, trend, and liquidity indicators across S&amp;P 500 constituents.</p>
+
             <div class="card-actions">
-              <a class="card-btn featured" href="https://docs.google.com/presentation/d/1rIDMkSfaWCV6zqyvPX2saEjUcLNd22IlNMb3SbGHfC4/edit?usp=sharing" target="_blank" rel="noopener"><span>View Project Presentation</span><span>↗</span></a>
-              <a class="card-btn" href="https://github.com/shanengrong/Code-for-Primealpha-Quant-Project/blob/main/Final%20RS%20(2).ipynb" target="_blank" rel="noopener"><span>View Code on GitHub</span><span>↗</span></a>
+              <a class="card-btn featured" href="./Primealpha%20Quant%20Presentation.pdf" target="_blank" rel="noopener">
+                <span>View Project Presentation</span><span>↗</span>
+              </a>
+              <a class="card-btn" href="https://github.com/shanengrong/Code-for-Primealpha-Quant-Project/blob/main/Final%20RS%20(2).ipynb" target="_blank" rel="noopener">
+                <span>View Code on GitHub</span><span>↗</span>
+              </a>
             </div>
+
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">Quantitative Modeling</span>
@@ -463,15 +457,24 @@
         </article>
 
         <article class="card project-card">
-          <div class="logo-box project-logo" aria-hidden="true">
-            <img src="telegram.png" alt="Telegram logo" />
+          <div class="logo-box project-logo telegram-logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="32" fill="currentColor" opacity="0.16" />
+              <path d="M50.2 16.7 12.6 31.2c-2.2.9-2.1 2.3-.4 2.8l9.6 3 3.7 11.6c.5 1.4 1.2 1.8 2.4.8l5.5-5.3 9.4 6.9c1.7.9 2.9.4 3.3-1.6l6-28.5c.6-2.5-.9-3.6-2.9-2.8Z" fill="white"/>
+              <path d="M22.6 36.3 43.9 22.9c1-.6 1.8-.3 1.1.4L27.8 38.9l-.7 7.5-3.3-10.1Z" fill="#dff6ff"/>
+            </svg>
           </div>
+
           <div>
             <h3>Market News Scraper with Daily Automated Updates to Telegram Bot</h3>
-            <p>Developed an automated workflow that scrapes from major market news outlets to find out most mentioned words, then use machine learning to rank articles that is receiving the greatest traction to track major market sentiment.</p>
+            <p>Developed an automated workflow that scrapes from major market news outlets to identify frequently mentioned words, then uses machine learning to rank articles receiving the greatest traction and track major market sentiment.</p>
+
             <div class="card-actions">
-              <a class="card-btn featured" href="https://t.me/shanengrong_bot" target="_blank" rel="noopener"><span>Join Telegram Bot @shanengrong_bot</span><span>↗</span></a>
+              <a class="card-btn featured" href="https://t.me/shanengrong_bot" target="_blank" rel="noopener">
+                <span>Join Telegram Bot @shanengrong_bot</span><span>↗</span>
+              </a>
             </div>
+
             <div class="tags">
               <span class="tag">Web Scraping</span>
               <span class="tag">NLP</span>
@@ -497,9 +500,13 @@
           </div>
           <h3>OTIS Stock Pitch</h3>
           <p>Bottom-up DCF and investment thesis developed for the Point72–NTU Stock Pitch, including business analysis, valuation, and upside assessment.</p>
+
           <div class="card-actions">
-            <a class="card-btn" href="https://github.com/shanengrong/Investment-Research/blob/main/OTIS.WrittenReport%20(Shane).pdf" target="_blank" rel="noopener"><span>View OTIS Deck</span><span>↗</span></a>
+            <a class="card-btn" href="https://github.com/shanengrong/Investment-Research/blob/main/OTIS.WrittenReport%20(Shane).pdf" target="_blank" rel="noopener">
+              <span>View OTIS Deck</span><span>↗</span>
+            </a>
           </div>
+
           <div class="tags">
             <span class="tag">DCF</span>
             <span class="tag">Equities</span>
@@ -513,9 +520,13 @@
           </div>
           <h3>CATL Stock Pitch</h3>
           <p>Equity research pitch on CATL, focused on energy storage demand, competitive positioning, and valuation framework.</p>
+
           <div class="card-actions">
-            <a class="card-btn" href="https://github.com/shanengrong/Investment-Research/blob/main/CATL%20report%20(Shane).pdf" target="_blank" rel="noopener"><span>View CATL Deck</span><span>↗</span></a>
+            <a class="card-btn" href="https://github.com/shanengrong/Investment-Research/blob/main/CATL%20report%20(Shane).pdf" target="_blank" rel="noopener">
+              <span>View CATL Deck</span><span>↗</span>
+            </a>
           </div>
+
           <div class="tags">
             <span class="tag">China Equities</span>
             <span class="tag">Energy Storage</span>
@@ -529,9 +540,13 @@
           </div>
           <h3>2025 NUS-AAG Asset Management Case Competition</h3>
           <p>Private banking case analysis on client asset allocation, portfolio construction, and investment recommendations.</p>
+
           <div class="card-actions">
-            <a class="card-btn" href="https://github.com/shanengrong/Investment-Research/blob/main/PB%20Case%20Presentation%20(Shane).pdf" target="_blank" rel="noopener"><span>View Case Deck</span><span>↗</span></a>
+            <a class="card-btn" href="https://github.com/shanengrong/Investment-Research/blob/main/PB%20Case%20Presentation%20(Shane).pdf" target="_blank" rel="noopener">
+              <span>View Case Deck</span><span>↗</span>
+            </a>
           </div>
+
           <div class="tags">
             <span class="tag">Portfolio</span>
             <span class="tag">Private Banking</span>
